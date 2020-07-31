@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zwd.boot.mapper.SysLogMapper">
+	<resultMap id="rm" type="com.zwd.boot.model.entity.SysLog">
+		<result property="id" jdbcType="BIGINT" column="id"/>
+		<result property="userId" jdbcType="BIGINT" column="user_id"/>
+		<result property="logLevel" jdbcType="VARCHAR" column="log_level"/>
+		<result property="type" jdbcType="VARCHAR" column="type"/>
+		<result property="exception" jdbcType="VARCHAR" column="exception"/>
+		<result property="content" jdbcType="VARCHAR" column="content"/>
+		<result property="requestParams" jdbcType="VARCHAR" column="request_params"/>
+		<result property="costTime" jdbcType="BIGINT" column="cost_time"/>
+		<result property="ip" jdbcType="VARCHAR" column="ip"/>
+		<result property="ua" jdbcType="VARCHAR" column="ua"/>
+		<result property="os" jdbcType="VARCHAR" column="os"/>
+		<result property="browser" jdbcType="VARCHAR" column="browser"/>
+		<result property="requestUrl" jdbcType="VARCHAR" column="request_url"/>
+		<result property="requestType" jdbcType="VARCHAR" column="request_type"/>
+		<result property="referer" jdbcType="VARCHAR" column="referer"/>
+		<result property="delFlag" jdbcType="INTEGER" column="del_flag"/>
+		<result property="updateBy" jdbcType="VARCHAR" column="update_by"/>
+		<result property="createBy" jdbcType="VARCHAR" column="create_by"/>
+		<result property="createTime" jdbcType="TIMESTAMP" column="create_time"/>
+		<result property="updateTime" jdbcType="TIMESTAMP" column="update_time"/>
+	</resultMap>
+
+	<select id="findLogListByCondition" parameterType="com.zwd.boot.model.vo.LogConditionVO" resultMap="rm">
+		SELECT
+			s.*
+		FROM
+			sys_log s
+		ORDER BY
+			s.create_time DESC
+	</select>
+</mapper>
+

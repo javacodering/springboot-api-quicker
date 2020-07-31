@@ -1,0 +1,59 @@
+server:
+  port: 8080
+  use-forward-headers: true
+spring:
+  transaction:
+    rollback-on-commit-failure: true
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/db_boot?characterEncoding=utf8&useSSL=false&allowMultiQueries=true
+    username: root
+    password: root
+    filters: stat
+    initialSize: 100
+    maxActive: 1000
+    maxOpenPreparedStatements: 20
+    maxWait: 60000
+    minEvictableIdleTimeMillis: 300000
+    minIdle: 500
+    poolPreparedStatements: true
+    testOnBorrow: false
+    testOnReturn: false
+    testWhileIdle: true
+    timeBetweenEvictionRunsMillis: 60000
+  jackson:
+    default-property-inclusion: non_null
+
+  # thymeleaf
+  thymeleaf:
+    cache: false
+    enabled: true
+    encoding: UTF-8
+    mode: HTML5
+    prefix: classpath:/templates/
+    suffix: .html
+    servlet:
+      content-type: text/html
+    http:
+      encoding:
+        force: true
+        charset: utf-8
+        enabled: true
+
+  # MyBatis
+mybatis:
+  mapper-locations: classpath*:/mapper/**Mapper.xml
+  type-aliases-package: com.zwd.boot.model
+
+#pagehelper
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+# mapper
+mapper:
+  mappers: com.zwd.boot.common.base.BaseMapper
+  not-empty: false
+  identity: MYSQL
